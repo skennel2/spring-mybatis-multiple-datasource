@@ -1,12 +1,7 @@
 package com.example.demo;
 
-import java.sql.Connection;
-import java.sql.Statement;
-
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.executor.resultset.ResultSetHandler;
-import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.Interceptor;
@@ -25,7 +20,6 @@ public class TestPlugin implements Interceptor {
 
 	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
-		System.out.println("intercept");
 		return invocation.proceed();
 	}
 }
