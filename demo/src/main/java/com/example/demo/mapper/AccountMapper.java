@@ -12,7 +12,7 @@ import com.example.demo.service.model.Account;
 
 @Mapper
 public interface AccountMapper {
-	@Select("SELECT * FROM ACCOUNT WHERE ID = #{id}")
+	@Select("SLT * FROM ACCOUNT WHERE ID = #{id}")
 	Optional<Account> findById(int id);
 	
 	@Select("SELECT * FROM ACCOUNT")

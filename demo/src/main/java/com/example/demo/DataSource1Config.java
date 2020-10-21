@@ -5,9 +5,11 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -17,6 +19,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan(value = "com.example.demo.mapper", sqlSessionFactoryRef = "sqlSessionFactory")
 public class DataSource1Config {
 
+	@Autowired
+	Environment env;
+	
 	@Bean(name = "dataSource")
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -31,6 +36,10 @@ public class DataSource1Config {
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean ssfb = new SqlSessionFactoryBean();
 		ssfb.setDataSource(dataSource());
+		ssfb.setPlugins(new TestPlugin());
+		ssfb.setDefaultScriptingLanguageDriver(CustomLanguageDriver.class);
+        ssfb.setScriptingLanguageDrivers(new CustomLanguageDriver(this.env));
+        
 		return ssfb.getObject();
 	}
 	

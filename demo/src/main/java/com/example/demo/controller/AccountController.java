@@ -24,6 +24,7 @@ public class AccountController {
 
 	@GetMapping(path = "/{id}")
 	public Account findById(@PathVariable Integer id) {
+		System.out.println(id);
 		Account account = accountMapper.findById(id).orElse(null);
 		return account;
 	}
