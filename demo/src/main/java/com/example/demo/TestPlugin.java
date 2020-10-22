@@ -11,11 +11,11 @@ import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 
-@Intercepts({
-	@Signature(type = Executor.class, method = "update", args ={MappedStatement.class, Object.class})
-	,@Signature(type = Executor.class, method = "query", args ={MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class})
-	,@Signature(type = Executor.class, method = "query", args ={MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class})
-})
+@Intercepts({ @Signature(type = Executor.class, method = "update", args = { MappedStatement.class, Object.class }),
+		@Signature(type = Executor.class, method = "query", args = { MappedStatement.class, Object.class,
+				RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class }),
+		@Signature(type = Executor.class, method = "query", args = { MappedStatement.class, Object.class,
+				RowBounds.class, ResultHandler.class }) })
 public class TestPlugin implements Interceptor {
 
 	@Override

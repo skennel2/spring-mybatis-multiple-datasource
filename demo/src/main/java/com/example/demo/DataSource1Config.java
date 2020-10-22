@@ -20,7 +20,7 @@ public class DataSource1Config {
 
 	@Autowired
 	Environment env;
-	
+
 	@Bean(name = "dataSource")
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -30,19 +30,19 @@ public class DataSource1Config {
 		dataSource.setPassword("1111");
 		return dataSource;
 	}
-	
+
 	@Bean(name = "sqlSessionFactory")
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean ssfb = new SqlSessionFactoryBean();
 		ssfb.setDataSource(dataSource());
 		ssfb.setPlugins(new TestPlugin());
 		ssfb.setDefaultScriptingLanguageDriver(CustomLanguageDriver.class);
-        ssfb.setScriptingLanguageDrivers(new CustomLanguageDriver(this.env));
-        
+		ssfb.setScriptingLanguageDrivers(new CustomLanguageDriver(this.env));
+
 		return ssfb.getObject();
 	}
-	
-	@Bean(name ="transactionManager")
+
+	@Bean(name = "transactionManager")
 	public DataSourceTransactionManager transactionManager() {
 		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource());
 		return transactionManager;

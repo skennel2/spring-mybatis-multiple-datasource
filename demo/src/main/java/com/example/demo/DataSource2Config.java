@@ -24,16 +24,16 @@ public class DataSource2Config {
 		dataSource.setPassword("1111");
 		return dataSource;
 	}
-	
-	@Bean(name ="sqlSessionFactory2")
+
+	@Bean(name = "sqlSessionFactory2")
 	public SqlSessionFactory sqlSessionFactory2() throws Exception {
 		SqlSessionFactoryBean ssfb = new SqlSessionFactoryBean();
 		ssfb.setDataSource(dataSource2());
-		
+
 		return ssfb.getObject();
 	}
-	
-	@Bean(name ="transactionManager2")
+
+	@Bean(name = "transactionManager2")
 	public DataSourceTransactionManager transactionManager2() {
 		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource2());
 		return transactionManager;

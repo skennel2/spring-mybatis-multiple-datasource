@@ -14,19 +14,19 @@ import com.example.demo.service.model.Account;
 public interface Account2Mapper {
 	@Select("SELECT * FROM ACCOUNT2 WHERE ID = #{id}")
 	Optional<Account> findById(int id);
-	
+
 	@Select("SELECT * FROM ACCOUNT2")
 	List<Account> getAll();
-	
+
 	@Select("SELECT * FROM ACCOUNT2 WHERE NAME = #{name}")
 	List<Account> findByName(String name);
-	
+
 	@Delete("DELETE FROM ACCOUNT2 WHERE ID = #{id}")
 	void deleteById(int id);
-	
+
 	@Select("SELECT MAX(id) FROM ACCOUNT2")
 	Integer getMaxId();
-	
+
 	@Insert("INSERT INTO ACCOUNT2 VALUES(#{id}, #{name})")
 	void insert(Integer id, String name);
 }

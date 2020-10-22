@@ -30,7 +30,7 @@ public class CustomLanguageDriver extends XMLLanguageDriver {
 
 	@Override
 	public SqlSource createSqlSource(Configuration configuration, String script, Class<?> parameterType) {
-		if(script.contains("SLT")) {
+		if (script.contains("SLT")) {
 			script = script.replace("SLT", "SELECT");
 		}
 		return super.createSqlSource(configuration, script, parameterType);

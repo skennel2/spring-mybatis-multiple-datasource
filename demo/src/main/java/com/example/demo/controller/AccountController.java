@@ -18,7 +18,7 @@ import com.example.demo.service.model.Account;
 public class AccountController {
 	@Autowired
 	private AccountMapper accountMapper;
-	
+
 	@Autowired
 	private Account2Mapper accountMapper2;
 
@@ -27,23 +27,23 @@ public class AccountController {
 		Account account = accountMapper.findById(id).orElse(null);
 		return account;
 	}
-	
-	@GetMapping(path ="/all")
+
+	@GetMapping(path = "/all")
 	public List<Account> getAll() {
 		return accountMapper2.getAll();
 	}
-	
+
 	@GetMapping(path = "/test/{id}")
 	public Account findById2(@PathVariable Integer id) {
 		Account account = accountMapper2.findById(id).orElse(null);
 		return account;
 	}
-	
-	@GetMapping(path ="/test/all")
+
+	@GetMapping(path = "/test/all")
 	public List<Account> getAll2() {
 		return accountMapper2.getAll();
 	}
-	
+
 	@GetMapping(path = "/insert/test1/{name}")
 	@Transactional(transactionManager = "transactionManager")
 	public void insertTest(@PathVariable String name) throws Exception {
@@ -51,10 +51,10 @@ public class AccountController {
 		accountMapper.insert(accountMapper.getMaxId() + 1, name);
 		// commit
 		accountMapper2.insert(accountMapper2.getMaxId() + 1, name);
-		
+
 		// 강제로 예외발생
 		int a = 1;
-		if(a == 1) {
+		if (a == 1) {
 			throw new RuntimeException();
 		}
 	}
